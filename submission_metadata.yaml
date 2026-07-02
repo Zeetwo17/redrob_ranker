@@ -1,0 +1,77 @@
+# Redrob Hackathon - Submission Metadata
+# Mirrors the portal metadata. Fill in the team/contact fields before submitting.
+
+team_name: "Ordinary"
+
+primary_contact:
+  name: "Vishal Pandey"
+  email: "iec2023114@iiita.ac.in"
+  phone: "+91-7021896659"
+
+team_members:
+  - name: "Vishal Pandey"
+    email: "iec2023114@iiita.ac.in"
+    role: "Student"
+  - name: "Hridyesh Kumar"
+    email: "iec2023115@iiita.ac.in"
+    role: "Student"
+  - name: "Abhinav Kumar"
+    email: "iec2023119@iiita.ac.in"
+    role: "Student"
+
+# ============================================================================
+# Code and reproducibility
+# ============================================================================
+github_repo: "https://github.com/Zeetwo17/redrob_ranker"
+
+sandbox_link: ""  # TODO: deploy demo
+
+reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
+
+# ============================================================================
+# Compute environment
+# ============================================================================
+compute:
+  platform: "Local Windows 11"
+  cpu_cores: 8
+  ram_gb: 16
+  python_version: "3.13.5"
+  os: "Windows 11"
+  uses_gpu_for_inference: false        # ranking is CPU-only
+  has_network_during_ranking: false    # no API calls during ranking
+  pre_computation_required: false      # no offline embeddings/training step
+  pre_computation_time_minutes: 0
+
+# ============================================================================
+# AI tools declaration (transparency only — not penalized)
+# ============================================================================
+ai_tools_used:
+  - "Copilot"
+
+ai_usage_summary: |
+  Used GitHub Copilot for code autocompletion and boilerplate generation.
+  All design decisions, scoring weights, taxonomies, and the honeypot guard
+  logic were done by us. No candidate data was sent to any external service.
+  The ranking step makes no API calls (CPU-only, no network).
+
+# ============================================================================
+# Approach summary
+# ============================================================================
+methodology_summary: |
+  Hybrid ranker with no keyword matching. Five components: (1) role fit based
+  on title + career trajectory (main anti-stuffer signal); (2) skill trust
+  using proficiency x duration x endorsements (catches stuffers with 0-month
+  skills); (3) TF-IDF semantic match between JD intent and candidate text
+  (catches plain-language fits); (4) experience/company/geo gates; (5)
+  behavioral modifier for availability. Structural honeypot guard catches
+  impossible profiles. Runs in ~97s on CPU for 100K candidates.
+
+# ============================================================================
+# Declarations
+# ============================================================================
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true

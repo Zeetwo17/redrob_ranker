@@ -1,0 +1,8 @@
+# Redrob ranker — minimal, CPU-only, no network at rank time.
+# Pinned to the major versions the ranker was developed and validated against.
+# These are the ONLY runtime dependencies; everything else is the Python stdlib.
+numpy>=1.26,<3
+scipy>=1.11
+scikit-learn>=1.4
+# pyyaml is only needed by tools that read submission_metadata.yaml, not by rank.py
+pyyaml>=6.0
